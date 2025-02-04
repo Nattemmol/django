@@ -1,0 +1,41 @@
+{% extends 'ums/main.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Destinations</title>
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid">
+    <section class="row">
+        <section class="col-md-8">
+            <div class="card card-body">
+                <span>
+                    <h4>Destinations</h4>
+                </span>
+            </div>
+
+            <div class="card card-body">
+                <table class="table">
+                    <tr>
+                        <th>Destination Name</th>
+                        <th style="padding-left: 35px;">Actions</th>
+                    </tr>
+
+                    {% for destination in allDestinations %}
+                    <tr>
+                        <td>{{destination.destinationName}}</td>
+                        <td>
+                            <a href="{% url 'update_destination' destination.id %}" class="btn" title="Update"><i class="far fa-edit fa-lg"></i></a>
+                            <a href="{% url 'delete_destination' destination.id %}" class="btn" title="Delete"><i class="far fa-trash-alt fa-lg"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+
+        {% include 'tour/add_destination.html' %}
+    </section>
+</section>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'ums/main.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Guests</title>
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid">
+    <section class="row">
+        <section class="col-md">
+            <div class="card card-body flex-row">
+                <h4>Booking Details</h4>
+                <a href="{% url 'add_guest' %}" class="btn btn-primary" style="margin-left: 73%;">Create new booking</a>
+            </div>
+            <div class="card card-body">
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Email Address</th>
+                        <th>Country</th>
+                        <th>Arrival Date</th>
+                        <th>Departure Date</th>
+                        <th>Destination</th>
+                        <th>Hotel</th>
+                        <th>Airline</th>
+                        <th>Update/Delete</th>
+                    </tr>
+
+                    {% for guest in guests %}
+                        <tr>
+                            <td>{{guest.name}}</td>
+                            <td>{{guest.phone}}</td>
+                            <td>{{guest.email}}</td>
+                            <td>{{guest.country}}</td>
+                            <td>{{guest.arrival_date}}</td>
+                            <td>{{guest.departure_date}}</td>
+                            <td>{{guest.destination}}</td>
+                            <td>{{guest.hotel}}</td>
+                            <td>{{guest.airline}}</td>
+                            <td>
+                                <a href="{% url 'update_guest' guest.id %}" class="btn" title="Update"><i class="far fa-edit fa-lg"></i></a>
+                                <a href="{% url 'delete_guest' guest.id %}" class="btn" title="Delete"><i class="far fa-trash-alt fa-lg"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+    </section>
+</section>
+{% endblock %}
