@@ -8,6 +8,8 @@ services:
       python manage.py collectstatic --noinput
     startCommand: gunicorn localhub_backend.wsgi:application
     envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: localhub_backend.settings
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: DEBUG
