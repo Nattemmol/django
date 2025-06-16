@@ -5,7 +5,8 @@ services:
     plan: free
     buildCommand: |
       cd localhub_backend
-      pip install --upgrade pip && pip install -r requirements.txt
+      pip install --upgrade pip
+      pip install -r requirements.txt
       python manage.py collectstatic --noinput
     startCommand: gunicorn localhub_backend.wsgi:application
     envVars:
